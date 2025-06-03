@@ -20,5 +20,5 @@ jobs:
       - name: Run extract inside container with mounted creds
         run: |
           docker run --rm \
-            -v "${{ github.workspace }}/creds.json:/app/creds.json" \
+            -v "$HOME/apps/transactions-extract/creds.json:/app/creds.json" \
             extract-job
