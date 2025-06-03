@@ -1,0 +1,23 @@
+name: Monthly Extract (Self-Hosted, Direct Mount)
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # Run at midnight UTC on the 1st
+  workflow_dispatch:
+
+jobs:
+  run-extract:
+    runs-on: self-hosted
+
+    steps:
+      - name: change working directory
+        run: cd $HOME/apps/transactions-extract
+        
+      - name: Build Docker image
+        run: docker build -t extract-job .
+
+      - name: Run extract inside container with mounted creds
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/creds.json:/app/creds.json" \
+            extract-job
