@@ -30,7 +30,6 @@ def extract():
     values = []
     # values.append(df['columns'])
     values.extend(df['data'])
-    print(values)
     # # Data to write
     # values = [
     #     ['Name', 'Score'],
