@@ -19,5 +19,5 @@ jobs:
         run: |
           docker run --rm \
             -v "$HOME/apps/transactions-extract/creds.json:/app/creds.json" \
-            --network wen-network
+            --network wen-network \
             extract-job
