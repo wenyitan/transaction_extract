@@ -2,7 +2,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from pymongo import MongoClient
 import pandas as pd
-from config import *
+from configs import *
 
 def extract():
     # Load credentials

@@ -14,7 +14,10 @@ jobs:
         run: cd $HOME/apps/transactions-extract
         
       - name: Build Docker image
-        run: docker build -t extract-job .
+        run: |
+          pwd
+          ls -lrt
+          docker build -t extract-job .
 
       - name: Run extract inside container with mounted creds
         run: |
