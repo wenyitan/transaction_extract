@@ -12,8 +12,6 @@ jobs:
     steps:       
       - name: Build Docker image
         run: |
-          pwd
-          ls -lrt
           cd $HOME/apps/transactions-extract
           docker build -t extract-job .
 
@@ -21,4 +19,5 @@ jobs:
         run: |
           docker run --rm \
             -v "$HOME/apps/transactions-extract/creds.json:/app/creds.json" \
+            --network wen-network
             extract-job
