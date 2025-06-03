@@ -9,14 +9,12 @@ jobs:
   run-extract:
     runs-on: self-hosted
 
-    steps:
-      - name: change working directory
-        run: cd $HOME/apps/transactions-extract
-        
+    steps:       
       - name: Build Docker image
         run: |
           pwd
           ls -lrt
+          cd $HOME/apps/transactions-extract
           docker build -t extract-job .
 
       - name: Run extract inside container with mounted creds
