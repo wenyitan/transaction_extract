@@ -3,6 +3,7 @@ from googleapiclient.discovery import build
 from pymongo import MongoClient
 import pandas as pd
 from configs import *
+from datetime import datetime, timedelta
 
 def extract():
     # Load credentials
@@ -23,7 +24,11 @@ def extract():
     db = client[MONGO_DB]
     collection = db[collection_name]
 
-    results = collection.find({}, projection={"_id": 0})
+    now = datetime.now()
+    week_ago = now - timedelta(weeks=1)
+    week_ago = week_ago.strftime("%b-%Y")
+
+    results = collection.find({"date": {"$regex": f"{week_ago}$"}}, projection={"_id": 0})
     df = pd.DataFrame.from_dict(results).to_dict(orient="split", index=False)
 
     # print(df)
